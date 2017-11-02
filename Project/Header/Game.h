@@ -9,17 +9,24 @@
 #include "../Header/splashscreen.h"
 #include "../Header/Titlescreen.h"
 #include "../Header/MainMenuScreen.h"
+#include "../Header/WorldSelectScreen.h"
+#include "../Header/EndGameScreen.h"
 
 using namespace std;
 
 class SplashScreen;
 class Titlescreen;
 class MainMenuScreen;
+class WorldSelectScreen;
+class EndGameScreen;
+
 
 enum GameState {
 	Splash,
 	Title,
-	MainMenu
+	MainMenu,
+	WorldSelect,
+	EndGame
 };
 
 /// <summary>
@@ -47,6 +54,9 @@ private:
 	std::unique_ptr<SplashScreen>m_Splash;
 	std::unique_ptr<Titlescreen>m_Title;
 	std::unique_ptr<MainMenuScreen>m_mainMenu;
+	std::unique_ptr<WorldSelectScreen>m_worldSelect;
+	std::unique_ptr<EndGameScreen>m_endGame;
+
 
 	//views
 	sf::View m_view;

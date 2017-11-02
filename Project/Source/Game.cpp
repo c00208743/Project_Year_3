@@ -8,7 +8,9 @@ Game::Game() :
 	m_Splash = make_unique<SplashScreen>(*this);
 	m_Title = make_unique<Titlescreen>(*this);
 	m_mainMenu = make_unique<MainMenuScreen>(*this);
-
+	m_worldSelect = make_unique<WorldSelectScreen>(*this);
+	m_endGame = make_unique<EndGameScreen>(*this);
+	
 
 }
 
@@ -60,11 +62,18 @@ void Game::render()
 		m_mainMenu->render(m_window);
 		break;
 
+	case GameState::WorldSelect:
+		m_worldSelect->render(m_window);
+		break;
+
+	case GameState::EndGame:
+		m_endGame->render(m_window);
+		break;
+
 	default:
 		break;
 
 	}
-
 
 	m_window.display();
 }
@@ -81,12 +90,22 @@ void Game::update(sf::Time time)
 		break;
 
 	case GameState::Title:
-		m_Title->update();
+		m_Title->update(time);
 		m_window.setView(m_view2);
 		break;
 
 	case GameState::MainMenu:
-		m_mainMenu->update();
+		m_mainMenu->update(time);
+		m_window.setView(m_view2);
+		break;
+
+	case GameState::WorldSelect:
+		m_worldSelect->update(time);
+		m_window.setView(m_view2);
+		break;
+
+	case GameState::EndGame:
+		m_endGame->update(time);
 		m_window.setView(m_view2);
 		break;
 

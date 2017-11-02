@@ -18,11 +18,17 @@ SplashScreen::SplashScreen(Game & game) : m_game(&game)
 	{
 		// Error...
 	}
-	//const sf::Color &colour = sf::Color::Black;
 
-	text = sf::Text("SPLASH SCREEN", myFont, 40);
-	//text.setColor(sf::Color(128, 128, 0));
-	text.setPosition(200, 200);
+	if (!myFont2.loadFromFile("Fonts/Batman.ttf"))
+	{
+		// Error...
+	}
+
+	text = sf::Text("MAYJORHARD GAMES", myFont, 40);
+	text.setPosition(200, 400);
+
+	text2 = sf::Text("(presents)", myFont2, 40);
+	text2.setPosition(400, 500);
 }
 
 //destructor
@@ -45,6 +51,7 @@ void SplashScreen::update(sf::Time deltaTime)
 void SplashScreen::render(sf::RenderWindow & window)
 {
 	window.draw(text);
+	window.draw(text2);
 }
 
 

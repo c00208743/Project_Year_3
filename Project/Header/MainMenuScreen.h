@@ -17,7 +17,7 @@ class MainMenuScreen
 public:
 	MainMenuScreen(Game &game);
 	~MainMenuScreen();
-	void update();
+	void update(sf::Time deltaTime);
 	void render(sf::RenderWindow & window);
 	void setStateBack();
 
@@ -26,9 +26,14 @@ private:
 	Game *m_game;
 
 	int m_currentSelect = 0;
-	sf::Time m_CumulativeTime;
+	sf::Time m_cumulativeTime;
 	sf::Font myFont;
 	sf::Text text;
+	//shader
+	float updateShader;
+	sf::Shader shader;
+	sf::Texture shaderTxt;
+	sf::Sprite shaderSprite;
 
 
 };
