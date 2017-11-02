@@ -20,10 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Game.h" />
+    <ClInclude Include="Header\KeyHandler.h" />
+    <ClInclude Include="Header\MainMenuScreen.h" />
+    <ClInclude Include="Header\splashscreen.h" />
+    <ClInclude Include="Header\Titlescreen.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Header\MainMenuScreen.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\KeyHandler.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\SplashScreen.cpp" />
+    <ClCompile Include="Source\Titlescreen.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -76,7 +84,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SFML_SDK)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;$(SFML_SDK)\lib</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -94,6 +105,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SFML_SDK)\lib</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
