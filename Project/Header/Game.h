@@ -6,20 +6,25 @@
 #include <SFML\Graphics\Rect.hpp>
 #include <memory>
 #include <vector>
-#include "../Header/splashscreen.h"
-#include "../Header/Titlescreen.h"
-#include "../Header/MainMenuScreen.h"
+#include "splashscreen.h"
+#include "Titlescreen.h"
+#include "MainMenuScreen.h"
+#include "Platform.h"
+#include "Player.h"
 
 using namespace std;
 
 class SplashScreen;
 class Titlescreen;
 class MainMenuScreen;
+class Platform;
+class Player;
 
 enum GameState {
 	Splash,
 	Title,
-	MainMenu
+	MainMenu,
+	Gameplay
 };
 
 /// <summary>
@@ -43,10 +48,12 @@ private:
 	void render();
 	void processInput();
 
-	GameState m_currentGameState = GameState::Splash; //current gamestate/screen
+	GameState m_currentGameState = GameState::Gameplay; //current gamestate/screen
 	std::unique_ptr<SplashScreen>m_Splash;
 	std::unique_ptr<Titlescreen>m_Title;
 	std::unique_ptr<MainMenuScreen>m_mainMenu;
+	std::unique_ptr<Platform>m_ground;
+	std::unique_ptr<Player>m_player;
 
 	//views
 	sf::View m_view;

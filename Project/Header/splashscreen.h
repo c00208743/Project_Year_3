@@ -7,7 +7,7 @@
 /// @brief Opening screen to display company logo
 /// </summary>
 
-#include "../Header/Game.h"
+#include "Game.h"
 #include <SFML\Graphics.hpp>
 
 class Game;

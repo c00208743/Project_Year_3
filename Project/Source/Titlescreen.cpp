@@ -18,10 +18,8 @@ Titlescreen::Titlescreen(Game & game) : m_game(&game)
 	{
 		// Error...
 	}
-	//const sf::Color &colour = sf::Color::Black;
 
 	text = sf::Text("TITLE SCREEN", myFont, 40);
-	//text.setColor(sf::Color(128, 128, 0));
 	text.setPosition(200, 200);
 
 	keys = KeyHandler();

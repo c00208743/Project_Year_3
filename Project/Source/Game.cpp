@@ -1,14 +1,14 @@
 #include "../Header/Game.h"
 
 
-
 Game::Game() :
 	m_window(sf::VideoMode(2560, 1440), "Sean and Jamie's Game")
 {
 	m_Splash = make_unique<SplashScreen>(*this);
 	m_Title = make_unique<Titlescreen>(*this);
 	m_mainMenu = make_unique<MainMenuScreen>(*this);
-
+	m_ground = make_unique<Platform>(0.0f, 1350.0f, 2560.0f, 90.0f);
+	m_player = make_unique<Player>();
 
 }
 
@@ -60,6 +60,11 @@ void Game::render()
 		m_mainMenu->render(m_window);
 		break;
 
+	case GameState::Gameplay:
+		m_ground->render(m_window);
+		m_player->render(m_window);
+		break;
+
 	default:
 		break;
 
@@ -88,6 +93,12 @@ void Game::update(sf::Time time)
 	case GameState::MainMenu:
 		m_mainMenu->update();
 		m_window.setView(m_view2);
+		break;
+
+	case GameState::Gameplay:
+		m_ground->update();
+		m_player->checkCollision(m_ground->getSize(), m_ground->getPos());
+		m_player->update();
 		break;
 
 	default:
