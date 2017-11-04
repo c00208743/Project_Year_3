@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Bullet.h" />
     <ClInclude Include="Header\Game.h" />
     <ClInclude Include="Header\KeyHandler.h" />
     <ClInclude Include="Header\MainMenuScreen.h" />
@@ -29,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Header\MainMenuScreen.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\KeyHandler.cpp" />
     <ClCompile Include="Source\main.cpp" />

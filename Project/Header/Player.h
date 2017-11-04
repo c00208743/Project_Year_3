@@ -8,6 +8,9 @@
 /// </summary>
 
 #include "Game.h"
+#include "Bullet.h"
+
+class Bullet;
 
 class Player
 {
@@ -23,13 +26,26 @@ public:
 private:
 	float m_mass;
 	float m_speed;
+	float m_direction;
 	sf::Vector2f m_size;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_accel;
 	sf::Vector2f m_gravity;
+	sf::Vector2f m_jumpForce;
+	sf::Vector2f m_moveForce;
 	sf::RectangleShape m_rect;
-	bool fall;
+	bool m_fall;
+	bool m_jumping;
+	bool m_movingLeft;
+	bool m_movingRight;
+
+	std::unique_ptr<Bullet> m_bullet;
+
+	void jump();
+	void moveLeft();
+	void moveRight();
+	void fire();
 
 
 };

@@ -8,6 +8,8 @@ Game::Game() :
 	m_Title = make_unique<Titlescreen>(*this);
 	m_mainMenu = make_unique<MainMenuScreen>(*this);
 	m_ground = make_unique<Platform>(0.0f, 1350.0f, 2560.0f, 90.0f);
+	m_platform.push_back(make_unique<Platform>(500.0f, 1300.0f, 50.0f, 50.0f));
+	m_platform.push_back(make_unique<Platform>(600.0f, 1200.0f, 50.0f, 50.0f));
 	m_player = make_unique<Player>();
 
 }
@@ -62,6 +64,10 @@ void Game::render()
 
 	case GameState::Gameplay:
 		m_ground->render(m_window);
+		for (int i = 0; i < 2; i++)
+		{
+			m_platform[i]->render(m_window);
+		}
 		m_player->render(m_window);
 		break;
 
@@ -98,6 +104,11 @@ void Game::update(sf::Time time)
 	case GameState::Gameplay:
 		m_ground->update();
 		m_player->checkCollision(m_ground->getSize(), m_ground->getPos());
+		for (int i = 0; i < 2; i++)
+		{
+			m_platform[i]->update();
+			m_player->checkCollision(m_platform[i]->getSize(), m_platform[i]->getPos());
+		}
 		m_player->update();
 		break;
 

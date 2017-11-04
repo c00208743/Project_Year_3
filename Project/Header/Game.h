@@ -53,6 +53,7 @@ private:
 	std::unique_ptr<Titlescreen>m_Title;
 	std::unique_ptr<MainMenuScreen>m_mainMenu;
 	std::unique_ptr<Platform>m_ground;
+	std::vector<std::unique_ptr<Platform>>m_platform;
 	std::unique_ptr<Player>m_player;
 
 	//views
