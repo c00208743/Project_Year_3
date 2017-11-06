@@ -11,7 +11,6 @@ Game::Game() :
 	m_worldSelect = make_unique<WorldSelectScreen>(*this);
 	m_endGame = make_unique<EndGameScreen>(*this);
 	
-
 }
 
 

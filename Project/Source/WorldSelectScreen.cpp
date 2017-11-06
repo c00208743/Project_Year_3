@@ -29,6 +29,7 @@ WorldSelectScreen::WorldSelectScreen(Game & game) : m_game(&game)
 	text[0].setPosition(100, 100);
 
 	text[1] = sf::Text("(world One)", myFont2, 40);
+	text[1].setFillColor(sf::Color::Blue);
 	text[1].setPosition(700, 400);
 	text[2] = sf::Text("[world Two]", myFont2, 40);
 	text[2].setPosition(700, 500);

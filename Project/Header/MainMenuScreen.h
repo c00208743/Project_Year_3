@@ -28,7 +28,8 @@ private:
 	int m_currentSelect = 0;
 	sf::Time m_cumulativeTime;
 	sf::Font myFont;
-	sf::Text text;
+	sf::Font myFont2;
+	sf::Text text[3];
 	//shader
 	float updateShader;
 	sf::Shader shader;
