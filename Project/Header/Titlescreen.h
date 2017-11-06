@@ -18,7 +18,7 @@ class Titlescreen
 public:
 	Titlescreen(Game &game);
 	~Titlescreen();
-	void update();
+	void update(sf::Time deltaTime);
 	void render(sf::RenderWindow & window);
 	void setStateBack();
 
@@ -27,9 +27,11 @@ private:
 	Game *m_game;
 
 	int m_currentSelect = 0;
-	sf::Time m_CumulativeTime;
+	bool conToMenu;
+	sf::Time m_cumulativeTime;
 	sf::Font myFont;
-	sf::Text text;
+	sf::Font myFont2;
+	sf::Text text[5];
 	KeyHandler keys;
 
 };

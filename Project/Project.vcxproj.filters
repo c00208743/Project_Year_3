@@ -30,6 +30,7 @@
     <ClInclude Include="Header\KeyHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Header\Platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,6 +38,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Bullet.h">
+=======
+    <ClInclude Include="Header\EndGameScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\WorldSelectScreen.h">
+>>>>>>> cd812fa2f704fcd9f046fbb49c266fe98ce00b86
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,6 +66,7 @@
     <ClCompile Include="Source\KeyHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Source\Platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,6 +74,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Bullet.cpp">
+=======
+    <ClCompile Include="Source\EndGameScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WorldSelectScreen.cpp">
+>>>>>>> cd812fa2f704fcd9f046fbb49c266fe98ce00b86
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

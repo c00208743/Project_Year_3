@@ -11,6 +11,8 @@
 #include "MainMenuScreen.h"
 #include "Platform.h"
 #include "Player.h"
+#include "WorldSelectScreen.h"
+#include "EndGameScreen.h"
 
 using namespace std;
 
@@ -19,12 +21,17 @@ class Titlescreen;
 class MainMenuScreen;
 class Platform;
 class Player;
+class WorldSelectScreen;
+class EndGameScreen;
+
 
 enum GameState {
 	Splash,
 	Title,
 	MainMenu,
-	Gameplay
+	Gameplay,
+	WorldSelect,
+	EndGame
 };
 
 /// <summary>
@@ -55,6 +62,9 @@ private:
 	std::unique_ptr<Platform>m_ground;
 	std::vector<std::unique_ptr<Platform>>m_platform;
 	std::unique_ptr<Player>m_player;
+	std::unique_ptr<WorldSelectScreen>m_worldSelect;
+	std::unique_ptr<EndGameScreen>m_endGame;
+
 
 	//views
 	sf::View m_view;

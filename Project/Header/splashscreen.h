@@ -28,7 +28,9 @@ private:
 	int m_currentSelect = 0;
 	sf::Time m_cumulativeTime;
 	sf::Font myFont;
+	sf::Font myFont2;
 	sf::Text text;
+	sf::Text text2;
 	
 
 };

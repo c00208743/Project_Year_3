@@ -14,13 +14,23 @@ Titlescreen::Titlescreen(Game & game) : m_game(&game)
 	m_currentSelect = 0;
 
 	// Load from a font file on disk
-	if (!myFont.loadFromFile("Fonts/Batman.ttf"))
+	if (!myFont.loadFromFile("Fonts/powerful.ttf"))
 	{
 		// Error...
 	}
 
-	text = sf::Text("TITLE SCREEN", myFont, 40);
-	text.setPosition(200, 200);
+	if (!myFont2.loadFromFile("Fonts/Batman.ttf"))
+	{
+		// Error...
+	}
+
+
+	text[0] = sf::Text("LINNY AND KARLTON", myFont, 40);
+	text[0].setPosition(200, 400);
+
+	text[1] = sf::Text("[Press) (Space] [to) (Continue]", myFont2, 30);
+	text[1].setPosition(200, 500);
+	//text[1].setColor(sf::Color::Black);
 
 	keys = KeyHandler();
 }
@@ -31,7 +41,7 @@ Titlescreen::~Titlescreen()
 }
 
 //updates screen
-void Titlescreen::update()
+void Titlescreen::update(sf::Time deltaTime)
 {
 	std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::Space) << std::endl;
 
@@ -39,12 +49,20 @@ void Titlescreen::update()
 	{
 		m_game->changeGameState(GameState::MainMenu);
 	}
+	if (m_cumulativeTime.asSeconds() > 5)
+	{
+		//text[1].setColor(sf::Color::White);
+	}
 }
 
 //draws window
 void Titlescreen::render(sf::RenderWindow & window)
 {
-	window.draw(text);
+	for (int i = 0; i < sizeof(text)/ sizeof(text[0]); i++)
+	{
+		window.draw(text[i]);
+	}
+	
 }
 
 

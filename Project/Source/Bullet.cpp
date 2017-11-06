@@ -79,6 +79,7 @@ void Bullet::checkCollision(sf::Vector2f size, sf::Vector2f pos)
 void Bullet::fire(float direction, sf::Vector2f pos)
 {
 	m_speed = 50.0f;
+
 	m_speed *= direction;
 	m_pos = pos;
 	m_alive = true;

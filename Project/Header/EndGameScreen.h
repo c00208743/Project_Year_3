@@ -1,22 +1,23 @@
 #pragma once
 
 /// <summary>
-/// @MainMenuScreen Title screen to be played after the title screen
+/// @EndGameScreen is to be played after the main menu---------currently coz theres no game screen
 /// @author Jamie Murphy and Sean Regan
 /// @Version 0.1
-/// @brief Dsiplay player options
+/// @brief Opening screen to display company logo
 /// </summary>
 
 #include "../Header/Game.h"
+#include "../Header/KeyHandler.h"
 #include <SFML\Graphics.hpp>
 
 class Game;
 
-class MainMenuScreen
+class EndGameScreen
 {
 public:
-	MainMenuScreen(Game &game);
-	~MainMenuScreen();
+	EndGameScreen(Game &game);
+	~EndGameScreen();
 	void update(sf::Time deltaTime);
 	void render(sf::RenderWindow & window);
 	void setStateBack();
@@ -26,15 +27,10 @@ private:
 	Game *m_game;
 
 	int m_currentSelect = 0;
+	bool closeGame;
 	sf::Time m_cumulativeTime;
 	sf::Font myFont;
-	sf::Font myFont2;
-	sf::Text text[3];
-	//shader
-	float updateShader;
-	sf::Shader shader;
-	sf::Texture shaderTxt;
-	sf::Sprite shaderSprite;
-
+	sf::Text text;
+	KeyHandler keys;
 
 };
