@@ -25,12 +25,12 @@ Titlescreen::Titlescreen(Game & game) : m_game(&game)
 	}
 
 
-	text[0] = sf::Text("LINNY AND KARLTON", myFont, 40);
-	text[0].setPosition(200, 400);
+	text[0] = sf::Text("LINNY AND KARLTON", myFont, 100);
+	text[0].setPosition(475, 400);
 
-	text[1] = sf::Text("[Press) (Space] [to) (Continue]", myFont2, 30);
-	text[1].setPosition(200, 500);
-	//text[1].setColor(sf::Color::Black);
+	text[1] = sf::Text("[Press) (Space] [to) (Continue]", myFont2, 100);
+	text[1].setPosition(300, 600);
+	text[1].setFillColor(sf::Color::Black);
 
 	keys = KeyHandler();
 }
@@ -43,15 +43,17 @@ Titlescreen::~Titlescreen()
 //updates screen
 void Titlescreen::update(sf::Time deltaTime)
 {
+	m_cumulativeTime += deltaTime;
 	std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::Space) << std::endl;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		m_game->changeGameState(GameState::MainMenu);
 	}
-	if (m_cumulativeTime.asSeconds() > 5)
+	if (m_cumulativeTime.asSeconds() > 2)
 	{
-		//text[1].setColor(sf::Color::White);
+		text[1].setFillColor(sf::Color::White);
+	
 	}
 }
 

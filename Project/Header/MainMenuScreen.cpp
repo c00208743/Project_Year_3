@@ -41,14 +41,24 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 	//shader.setParameter("mouse", 0, 0);
 	//shader.setParameter("resolution", 1000, 800);
 
-	text[0] = sf::Text("MAIN MENU", myFont, 40);
-	//text.setColor(sf::Color(128, 128, 0));
-	text[0].setPosition(200, 200);
+	if (!m_Texture.loadFromFile("Images/Background-Menu.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setPosition(0, 0);
+	m_Sprite.setScale(1.2, 1.2);
 
-	text[1] = sf::Text("[PLAY_GAME]", myFont2, 30);
-	text[1].setPosition(200, 500);
-	text[2] = sf::Text("(EXIT)", myFont2, 30);
-	text[2].setPosition(200, 600);
+	text[0] = sf::Text("MAIN MENU", myFont, 100);
+	text[0].setPosition(800, 400);
+
+	text[1] = sf::Text("[PLAY][GAME]", myFont2, 100);
+	text[1].setPosition(900, 700);
+	text[1].setFillColor(sf::Color::Black);
+	text[2] = sf::Text("(EXIT)", myFont2, 100);
+	text[2].setPosition(1100, 900);
+	text[2].setFillColor(sf::Color::Black);
 }
 
 //destructor
@@ -74,6 +84,7 @@ void MainMenuScreen::update(sf::Time deltaTime)
 //draws window
 void MainMenuScreen::render(sf::RenderWindow & window)
 {
+	window.draw(m_Sprite);
 	for (int i = 0; i < sizeof(text) / sizeof(text[0]); i++)
 	{
 		window.draw(text[i]);

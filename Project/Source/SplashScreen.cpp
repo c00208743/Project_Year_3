@@ -24,11 +24,11 @@ SplashScreen::SplashScreen(Game & game) : m_game(&game)
 		// Error...
 	}
 
-	text = sf::Text("MAYJORHARD GAMES", myFont, 40);
-	text.setPosition(200, 400);
+	text = sf::Text("MAYJORHARD GAMES", myFont, 100);
+	text.setPosition(475, 400);
 
-	text2 = sf::Text("(presents)", myFont2, 40);
-	text2.setPosition(400, 500);
+	text2 = sf::Text("(presents)", myFont2, 100);
+	text2.setPosition(1000, 600);
 }
 
 //destructor

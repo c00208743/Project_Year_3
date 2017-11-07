@@ -27,6 +27,7 @@ private:
 	Game *m_game;
 
 	int m_currentSelect = 0;
+	int alpha = 255;
 	bool conToMenu;
 	sf::Time m_cumulativeTime;
 	sf::Font myFont;

@@ -35,6 +35,8 @@ private:
 	sf::Vector2f m_jumpForce;
 	sf::Vector2f m_moveForce;
 	sf::RectangleShape m_rect;
+	sf::Time m_cumulativeTime;
+
 	bool m_fall;
 	bool m_jumping;
 	bool m_movingLeft;
@@ -46,6 +48,10 @@ private:
 	void moveLeft();
 	void moveRight();
 	void fire();
+	//Player sprite
+	sf::Texture m_Texture;//background texture
+	sf::Sprite m_Sprite;//sprite for texture
+
 
 
 };

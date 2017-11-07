@@ -10,7 +10,7 @@ Player::Player()
 	m_accel = sf::Vector2f(0, 0);
 	m_rect = sf::RectangleShape(m_size);
 	m_rect.setPosition(m_pos);
-	m_rect.setFillColor(sf::Color::Green);
+	//m_rect.setFillColor(sf::Color::Green);
 	m_gravity = sf::Vector2f(0, 0.1f * m_mass);
 	m_jumpForce = sf::Vector2f(0, -5.0f * m_mass);
 	m_moveForce = sf::Vector2f(0.5f * m_mass, 0.0f);
@@ -19,6 +19,14 @@ Player::Player()
 	m_movingLeft = true;
 	m_movingRight = true;
 	m_direction = 1.0f;
+
+	if (!m_Texture.loadFromFile("Images/Player.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setPosition(m_velocity);
 
 	m_bullet = make_unique<Bullet>();
 
@@ -32,7 +40,7 @@ Player::~Player()
 
 void Player::render(sf::RenderWindow & window)
 {
-	window.draw(m_rect);
+	window.draw(m_Sprite);
 	m_bullet->render(window);
 }
 
@@ -44,6 +52,7 @@ void Player::applyForce(sf::Vector2f force)
 
 void Player::update()
 {	
+
 	m_bullet->update();
 
 	fire();
@@ -65,7 +74,7 @@ void Player::update()
 	m_pos += m_velocity;
 	m_accel = sf::Vector2f(0.0f, 0.0f);
 
-	m_rect.setPosition(m_pos);
+	m_Sprite.setPosition(m_pos);
 }
 
 void Player::checkCollision(sf::Vector2f size, sf::Vector2f pos)
@@ -90,6 +99,8 @@ void Player::checkCollision(sf::Vector2f size, sf::Vector2f pos)
 				// Top 
 				m_velocity.y = 0.0f;
 				m_jumping = false;
+				m_fall = true;
+				m_pos.y = pos.y + size.y;
 			}
 			else if ( wy < -hx)
 			{

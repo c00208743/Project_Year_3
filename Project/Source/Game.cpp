@@ -9,12 +9,11 @@ Game::Game() :
 	m_mainMenu = make_unique<MainMenuScreen>(*this);
 	m_ground = make_unique<Platform>(0.0f, 1350.0f, 2560.0f, 90.0f);
 	m_platform.push_back(make_unique<Platform>(500.0f, 1300.0f, 50.0f, 50.0f));
-	m_platform.push_back(make_unique<Platform>(600.0f, 1200.0f, 50.0f, 50.0f));
+	m_platform.push_back(make_unique<Platform>(600.0f, 1200.0f, 500.0f, 50.0f));
 	m_player = make_unique<Player>();
 
 	m_worldSelect = make_unique<WorldSelectScreen>(*this);
 	m_endGame = make_unique<EndGameScreen>(*this);
-	
 }
 
 
@@ -98,27 +97,22 @@ void Game::update(sf::Time time)
 	{
 	case GameState::Splash:
 		m_Splash->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::Title:
 		m_Title->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::MainMenu:
 		m_mainMenu->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::WorldSelect:
 		m_worldSelect->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::EndGame:
 		m_endGame->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::Gameplay:

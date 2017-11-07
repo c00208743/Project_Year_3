@@ -23,18 +23,28 @@ WorldSelectScreen::WorldSelectScreen(Game & game) : m_game(&game)
 	{
 		// Error...
 	}
+	if (!m_Texture.loadFromFile("Images/Background-Menu.png"))
+	{
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
+	}
+	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setPosition(0, 0);
+	m_Sprite.setScale(1.2, 1.2);
 
 
-	text[0] = sf::Text("WORLD SELECT ", myFont, 40);
-	text[0].setPosition(100, 100);
+	text[0] = sf::Text("WORLD SELECT ", myFont, 100);
+	text[0].setPosition(800, 400);
 
-	text[1] = sf::Text("(world One)", myFont2, 40);
-	text[1].setFillColor(sf::Color::Blue);
-	text[1].setPosition(700, 400);
-	text[2] = sf::Text("[world Two]", myFont2, 40);
-	text[2].setPosition(700, 500);
-	text[3] = sf::Text("(world Three)", myFont2, 40);
-	text[3].setPosition(700, 600);
+	text[1] = sf::Text("(world One)", myFont2, 100);
+	text[1].setFillColor(sf::Color::Red);
+	text[1].setPosition(1000, 600);
+	text[2] = sf::Text("[world Two]", myFont2, 100);
+	text[2].setFillColor(sf::Color::Black);
+	text[2].setPosition(1000, 800);
+	text[3] = sf::Text("(world Three)", myFont2, 100);
+	text[3].setFillColor(sf::Color::Black);
+	text[3].setPosition(1000, 1000);
 
 
 	keys = KeyHandler();
@@ -48,23 +58,19 @@ WorldSelectScreen::~WorldSelectScreen()
 //updates screen
 void WorldSelectScreen::update(sf::Time deltaTime)
 {
-	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+	{
+		m_game->changeGameState(GameState::Gameplay);
+	}
 }
 
 //draws window
 void WorldSelectScreen::render(sf::RenderWindow & window)
 {
+	window.draw(m_Sprite);
 	for (int i = 0; i < sizeof(text) / sizeof(text[0]); i++)
 	{
 		window.draw(text[i]);
 	}
 
-}
-
-
-
-//sets gamestate
-void WorldSelectScreen::setStateBack()
-{
-	//m_game->changeGameState(GameState::TheMenu);
 }
