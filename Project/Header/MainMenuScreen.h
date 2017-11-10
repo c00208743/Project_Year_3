@@ -19,7 +19,7 @@ public:
 	~MainMenuScreen();
 	void update(sf::Time deltaTime);
 	void render(sf::RenderWindow & window);
-	void setStateBack();
+	
 
 private:
 
@@ -35,9 +35,7 @@ private:
 	sf::Shader shader;
 	sf::Texture shaderTxt;
 	sf::Sprite shaderSprite;
-	//Background image
-	sf::Texture m_Texture;//background texture
-	sf::Sprite m_Sprite;//sprite for texture
+
 
 
 };

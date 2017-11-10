@@ -44,6 +44,11 @@ void SplashScreen::update(sf::Time deltaTime)
 	{
 		m_game->changeGameState(GameState::Title);
 	}
+	int v1 = rand() % 255;
+	int v2 = rand() % 255;
+	int v3 = rand() % 255;
+	text.setFillColor(sf::Color(v1, v2, v3));
+
 
 }
 

@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "WorldSelectScreen.h"
 #include "EndGameScreen.h"
+#include <SFML/Graphics/Shader.hpp>
 
 using namespace std;
 

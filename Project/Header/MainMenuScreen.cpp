@@ -1,4 +1,5 @@
 #include "../Header/MainMenuScreen.h"
+#include <iostream>
 
 /// <summary>
 /// @SplashScreen Title screen to be played before the main menu
@@ -24,31 +25,24 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 		// Error...
 	}
 
-	//if (!shaderTxt.loadFromFile("Images/Background.jpg"))
-	//{
-	//	std::string s("error loading shader texture");
-	//	//throw std::exception(s.c_str);
-	//}
-	//shaderSprite.setTexture(shaderTxt);
-	//shaderSprite.setPosition(0, 0);
-
-	//if (!shader.loadFromFile("Shader/upgrade.frag", sf::Shader::Fragment))
-	//{
-	//	std::string s("error loading shader");
-	//	//throw std::exception(s.c_str);
-	//}
-	//shader.setParameter("time", 0);
-	//shader.setParameter("mouse", 0, 0);
-	//shader.setParameter("resolution", 1000, 800);
-
-	if (!m_Texture.loadFromFile("Images/Background-Menu.png"))
+	if (!shaderTxt.loadFromFile("Images/Background.jpg"))
 	{
-		std::string s("error loading texture from file");
-		throw std::exception(s.c_str());
+		std::string s("error loading shader texture");
+		//throw std::exception(s.c_str);
 	}
-	m_Sprite.setTexture(m_Texture);
-	m_Sprite.setPosition(0, 0);
-	m_Sprite.setScale(1.2, 1.2);
+	shaderSprite.setTexture(shaderTxt);
+	shaderSprite.setPosition(0, 0);
+
+	if (!shader.loadFromFile("Shader/shader.frag", sf::Shader::Fragment))
+	{
+		std::string s("error loading shader");
+		//throw std::exception(s.c_str);
+	}
+	shader.setUniform("time", 0.0f);
+	shader.setUniform("mouse", sf::Vector2f(0.5f, 0.8f));
+	shader.setUniform("resolution", sf::Vector2f(1000, 800));
+	shader.setUniform("backbuffer", sf::Shader::CurrentTexture);
+
 
 	text[0] = sf::Text("MAIN MENU", myFont, 100);
 	text[0].setPosition(800, 400);
@@ -71,8 +65,8 @@ void MainMenuScreen::update(sf::Time deltaTime)
 {
 	std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::A) << std::endl;
 
-	/*updateShader = m_cumulativeTime.asSeconds();
-	shader.setParameter("time", updateShader);*/
+	updateShader = m_cumulativeTime.asSeconds();
+	shader.setUniform("time", updateShader);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -84,18 +78,10 @@ void MainMenuScreen::update(sf::Time deltaTime)
 //draws window
 void MainMenuScreen::render(sf::RenderWindow & window)
 {
-	window.draw(m_Sprite);
+	window.draw(shaderSprite, &shader);
 	for (int i = 0; i < sizeof(text) / sizeof(text[0]); i++)
 	{
 		window.draw(text[i]);
 	}
-	/*window.draw(shaderSprite, &shader);*/
-}
-
-
-
-//sets gamestate
-void MainMenuScreen::setStateBack()
-{
-	//m_game->changeGameState(GameState::TheMenu);
+	
 }
