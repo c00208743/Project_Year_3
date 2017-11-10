@@ -38,7 +38,7 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 		std::string s("error loading shader");
 		//throw std::exception(s.c_str);
 	}
-	shader.setUniform("time", 1.0f);
+	shader.setUniform("time", 0.0f);
 	shader.setUniform("mouse", sf::Vector2f(0.5f, 0.8f));
 	shader.setUniform("resolution", sf::Vector2f(2560, 1440));
 	//shader.setUniform("backbuffer", sf::Shader::CurrentTexture);

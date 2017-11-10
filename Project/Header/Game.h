@@ -14,6 +14,7 @@
 #include "WorldSelectScreen.h"
 #include "EndGameScreen.h"
 #include <SFML/Graphics/Shader.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace std;
 
@@ -72,5 +73,9 @@ private:
 	sf::Time timeSinceLastUpdate;
 	sf::Time timePerFrame;
 	float totalTime;
+
+	//Audio
+	sf::Sound songs;
+	sf::SoundBuffer songBuffer;
 };
 

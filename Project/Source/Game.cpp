@@ -14,6 +14,14 @@ Game::Game() :
 
 	m_worldSelect = make_unique<WorldSelectScreen>(*this);
 	m_endGame = make_unique<EndGameScreen>(*this);
+
+	if (!songBuffer.loadFromFile("Audio/song1.wav"))
+	{
+		std::string s("error loading wav file");
+		throw std::exception(s.c_str());
+	}
+	//set song buffer
+	songs.setBuffer(songBuffer);
 }
 
 
