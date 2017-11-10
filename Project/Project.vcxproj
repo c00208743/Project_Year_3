@@ -20,27 +20,35 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Bullet.h" />
+    <ClInclude Include="Header\Button.h" />
     <ClInclude Include="Header\EndGameScreen.h" />
     <ClInclude Include="Header\Game.h" />
+    <ClInclude Include="Header\GUI.h" />
     <ClInclude Include="Header\KeyHandler.h" />
+    <ClInclude Include="Header\Label.h" />
     <ClInclude Include="Header\MainMenuScreen.h" />
     <ClInclude Include="Header\Platform.h" />
     <ClInclude Include="Header\Player.h" />
     <ClInclude Include="Header\splashscreen.h" />
     <ClInclude Include="Header\Titlescreen.h" />
+    <ClInclude Include="Header\Widget.h" />
     <ClInclude Include="Header\WorldSelectScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Header\MainMenuScreen.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
+    <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\EndGameScreen.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\KeyHandler.cpp" />
+    <ClCompile Include="Source\Label.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Platform.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\SplashScreen.cpp" />
     <ClCompile Include="Source\Titlescreen.cpp" />
+    <ClCompile Include="Source\Widget.cpp" />
     <ClCompile Include="Source\WorldSelectScreen.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
