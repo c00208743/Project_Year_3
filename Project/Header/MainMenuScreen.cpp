@@ -38,10 +38,10 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 		std::string s("error loading shader");
 		//throw std::exception(s.c_str);
 	}
-	shader.setUniform("time", 0.0f);
+	shader.setUniform("time", 1.0f);
 	shader.setUniform("mouse", sf::Vector2f(0.5f, 0.8f));
-	shader.setUniform("resolution", sf::Vector2f(1000, 800));
-	shader.setUniform("backbuffer", sf::Shader::CurrentTexture);
+	shader.setUniform("resolution", sf::Vector2f(2560, 1440));
+	//shader.setUniform("backbuffer", sf::Shader::CurrentTexture);
 
 
 	text[0] = sf::Text("MAIN MENU", myFont, 100);
@@ -65,8 +65,9 @@ void MainMenuScreen::update(sf::Time deltaTime)
 {
 	std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::A) << std::endl;
 
-	updateShader = m_cumulativeTime.asSeconds();
+	updateShader += deltaTime.asSeconds()*2;
 	shader.setUniform("time", updateShader);
+
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
