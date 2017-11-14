@@ -75,7 +75,6 @@ private:
 	float totalTime;
 
 	//Audio
-	sf::Sound songs;
-	sf::SoundBuffer songBuffer;
+	sf::Music music;
 };
 
