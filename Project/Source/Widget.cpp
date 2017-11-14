@@ -83,3 +83,15 @@ void Widget::setRectColour(sf::Color colour)
 void Widget::changeTextSize(int size)
 {
 }
+
+//increase the value of the widget
+void Widget::increaseValue()
+{
+
+}
+
+//decrease the widgets value
+void Widget::decreaseValue()
+{
+
+}

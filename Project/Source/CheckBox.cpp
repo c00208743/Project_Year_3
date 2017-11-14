@@ -19,7 +19,7 @@ CheckBox::CheckBox(std::string s, float x, float y) : Widget()
 	m_text.setFont(m_font);
 	m_text.setString(s);
 	m_text.setPosition((x + 10), y);
-	m_text.setColor(sf::Color::White);
+	m_text.setFillColor(sf::Color::White);
 	m_text.setCharacterSize(25);
 
 	m_rect.setPosition(x - 10, y);
@@ -73,11 +73,11 @@ void CheckBox::update()
 {
 	if (m_focus == true)
 	{
-		m_text.setColor(sf::Color::Red);
+		m_text.setFillColor(sf::Color::Red);
 		m_rect.setOutlineColor(sf::Color::Red);
 	}
 	else {
-		m_text.setColor(sf::Color::White);
+		m_text.setFillColor(sf::Color::White);
 		m_rect.setOutlineColor(sf::Color::Transparent);
 	}
 

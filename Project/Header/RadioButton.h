@@ -23,7 +23,7 @@ public:
 
 	void update()override;		// Update
 	void draw(sf::RenderWindow &window)override;	//Draw
-	void getActive();			// Turn radio button on
+	void becomeActive();		// Turn radio button on
 	void loseActive();			// Turn it off
 	bool checkActive();			// Check  if its active or not
 
@@ -33,7 +33,7 @@ public:
 
 private:
 	sf::CircleShape m_icon;		// Circle next to font
-	bool m_hasFocus;			// Does it have focus
+	bool m_focus;				// Does it have focus
 	bool m_isActive;			// Is the button turned on
 	sf::RectangleShape m_rect;	// Rectangle surrounding text
 	sf::Font m_font;

@@ -7,6 +7,8 @@
 
 #include "../Header/GUI.h"
 
+sf::Clock GUI::m_timeBetweenClicks = sf::Clock::Clock();
+
 GUI::GUI()
 {
 
@@ -26,6 +28,34 @@ void GUI::update(int &index, int numOfItems)
 	for each (Widget* i in m_elements)
 	{
 		i->update();	
+	}
+
+	if (m_elements[index]->getID() == "slider") //if element is a slider the these can be performed
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			m_elements[index]->decreaseValue();
+			decreaseSliderValue(index);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			m_elements[index]->increaseValue();
+			increaseSliderValue(index);
+		}
+	}
+
+
+	//control schemes
+	if (vertical)
+	{
+		verticalControls(index, numOfItems);
+	}
+	else if (horizontal)
+	{
+		horizontalControls(index, numOfItems);
+	}
+	else {
+		vertAndHorControls(index, numOfItems);
 	}
 }
 
@@ -97,6 +127,32 @@ void GUI::activate(int &index)
 			std::cout << "Bad Function Call" << std::endl;
 		}
 	}
+	else if (m_elements[index]->getID() == "checkbox")
+	{
+		if (m_elements[index]->checkActive() == false)
+		{
+			m_elements[index]->getActive();
+			try
+			{
+				m_elements[index]->Enter();
+			}
+			catch (std::bad_function_call)
+			{
+				std::cout << "Bad Function Call" << std::endl;
+			}
+		}
+		else {
+			m_elements[index]->loseActive();
+			try
+			{
+				m_elements[index]->Enter();
+			}
+			catch (std::bad_function_call)
+			{
+				std::cout << "Bad Function Call" << std::endl;
+			}
+		}
+	}
 	else
 	{
 		for (int i = 0; i < m_elements.size(); i++)
@@ -126,4 +182,128 @@ void GUI::activate(int &index)
 			}
 		}
 	}
+}
+
+void GUI::addLabel(Label * label)
+{
+	m_labels.push_back(label);
+}
+
+void GUI::addButton(Button * button)
+{
+	m_elements.push_back(button);
+}
+
+void GUI::addSlider(Slider *slider)
+{
+	m_elements.push_back(slider);
+}
+
+void GUI::addRadioButton(RadioButton * radioButton)
+{
+	m_elements.push_back(radioButton);
+}
+
+void GUI::addCheckBox(CheckBox * checkBox)
+{
+	m_elements.push_back(checkBox);
+}
+
+//use callback functions of slider that are used to increase values
+void GUI::increaseSliderValue(int &index)
+{
+	try {
+		m_elements[index]->AdjustAdd();
+		m_elements[index]->increaseValue();
+	}
+	catch (std::bad_function_call)
+	{
+		std::cout << "Bad Function Call" << std::endl;
+	}
+}
+
+//use calback functions of slider that are used to decrease values
+void GUI::decreaseSliderValue(int &index)
+{
+	try {
+		m_elements[index]->AdjustMinus();
+		m_elements[index]->decreaseValue();
+	}
+	catch (std::bad_function_call)
+	{
+		std::cout << "Bad Function Call" << std::endl;
+	}
+}
+
+//vertical control scheme for xbox controller, dpad vertical use only
+void GUI::verticalControls(int &index, int numOfItems)
+{
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		moveUp(index);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		moveDown(index, numOfItems);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		if (m_elements[index]->getID() == "button") {
+
+			m_timeBetweenClicks.getElapsedTime().asSeconds();
+			if (m_timeBetweenClicks.getElapsedTime().asSeconds() > 1)
+			{
+				activate(index);
+				m_timeBetweenClicks.restart();
+			}
+		}
+		if (m_elements[index]->getID() == "radiobutton" || m_elements[index]->getID() == "checkbox")
+		{
+			activate(index);
+		}
+
+	}
+}
+
+//horizontal control scheme for xbox controller, dpad horizontal use only
+void GUI::horizontalControls(int & index, int numOfItems)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		moveUp(index);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		moveDown(index, numOfItems);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		activate(index);
+	}
+}
+
+//vertical and horizontal control scheme for xbox controller, dpad vertical and horizontal
+void GUI::vertAndHorControls(int & index, int numOfItems)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		moveUp(index);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		moveDown(index, numOfItems);
+	}
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		activate(index);
+	}
+}
+
+//clear out all the elements 
+void GUI::removeAllElements()
+{
+	m_elements.clear();
+	m_labels.clear();
 }

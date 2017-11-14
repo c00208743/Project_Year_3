@@ -30,7 +30,11 @@ public:
 	virtual void changeTextSize(int size);			// Change font size
 	typedef std::function<void()> Callback;
 	Callback Enter;
+	Callback AdjustAdd;
+	Callback AdjustMinus; //callback functions
 	bool isActive;				// is element active
+	virtual void increaseValue();
+	virtual void decreaseValue(); //for sliders
 
 protected:
 	sf::RectangleShape m_rect;	// Rectangle surrounding the element
