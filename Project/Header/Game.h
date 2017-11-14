@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "WorldSelectScreen.h"
 #include "EndGameScreen.h"
+#include "LevelLoader.h"
 #include <SFML/Graphics/Shader.hpp>
 #include <SFML/Audio.hpp>
 

@@ -49,7 +49,7 @@ LevelLoader::LevelLoader()
 bool LevelLoader::load(int nr, LevelData &level)
 {
 	std::stringstream ss;
-	ss << "./levels/level";//load form this file
+	ss << "./Levels/level";//load form this file
 	ss << nr;
 	ss << ".yaml";
 
