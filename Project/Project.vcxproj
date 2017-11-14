@@ -23,6 +23,7 @@
     <ClInclude Include="Header\EndGameScreen.h" />
     <ClInclude Include="Header\Game.h" />
     <ClInclude Include="Header\KeyHandler.h" />
+    <ClInclude Include="Header\LevelLoader.h" />
     <ClInclude Include="Header\MainMenuScreen.h" />
     <ClInclude Include="Header\Platform.h" />
     <ClInclude Include="Header\Player.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Source\EndGameScreen.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\KeyHandler.cpp" />
+    <ClCompile Include="Source\LevelLoader.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Platform.cpp" />
     <ClCompile Include="Source\Player.cpp" />
