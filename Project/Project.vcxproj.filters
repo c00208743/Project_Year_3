@@ -46,6 +46,9 @@
     <ClCompile Include="Source\Button.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CheckBox.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Bullet.h">
@@ -88,6 +91,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Header\Button.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\CheckBox.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

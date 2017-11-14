@@ -1,6 +1,5 @@
 #pragma once
 
-
 /// <summary>
 /// @mainpage 3rd year project - 2D platformer
 /// @Author Sean Regan, Jamie Murphy

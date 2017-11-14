@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Header\Bullet.h" />
     <ClInclude Include="Header\Button.h" />
+    <ClInclude Include="Header\CheckBox.h" />
     <ClInclude Include="Header\EndGameScreen.h" />
     <ClInclude Include="Header\Game.h" />
     <ClInclude Include="Header\GUI.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Header\MainMenuScreen.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\Button.cpp" />
+    <ClCompile Include="Source\CheckBox.cpp" />
     <ClCompile Include="Source\EndGameScreen.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GUI.cpp" />
