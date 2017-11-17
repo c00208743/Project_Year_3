@@ -3,9 +3,9 @@
 CheckBox::CheckBox(std::string s, float x, float y) : Widget()
 {
 	m_id = "checkbox";
-	if (!m_font.loadFromFile("../Fonts/impact.tff"))
+	if (!m_font.loadFromFile("..\Fonts\impact.tff"))
 	{
-
+		std::cout << "Check box font failed to load" << std::endl;
 	}
 	m_icon.setFillColor(sf::Color::White);
 	m_icon.setOutlineThickness(1.3);

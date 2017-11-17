@@ -11,7 +11,8 @@ sf::Clock GUI::m_timeBetweenClicks = sf::Clock::Clock();
 
 GUI::GUI()
 {
-
+	upKeyPrevious = false;
+	downKeyPrevious = false;
 }
 
 GUI::~GUI()
@@ -61,6 +62,11 @@ void GUI::update(int &index, int numOfItems)
 
 void GUI::draw(sf::RenderWindow & window)
 {
+	for each (Label* var in m_labels)
+	{
+		var->draw(window);
+	}
+
 	for each (Widget* i in m_elements)
 	{
 		i->draw(window);
@@ -235,7 +241,7 @@ void GUI::decreaseSliderValue(int &index)
 	}
 }
 
-//vertical control scheme for xbox controller, dpad vertical use only
+//vertical control scheme for dpad vertical use only
 void GUI::verticalControls(int &index, int numOfItems)
 {
 
@@ -264,6 +270,9 @@ void GUI::verticalControls(int &index, int numOfItems)
 		}
 
 	}
+
+	upKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+	downKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
 }
 
 //horizontal control scheme for xbox controller, dpad horizontal use only
@@ -290,15 +299,18 @@ void GUI::vertAndHorControls(int & index, int numOfItems)
 	{
 		moveUp(index);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !upKeyPrevious)
 	{
 		moveDown(index, numOfItems);
 	}
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !downKeyPrevious)
 	{
 		activate(index);
 	}
+
+	upKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+	downKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
 }
 
 //clear out all the elements 

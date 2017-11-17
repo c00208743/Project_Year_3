@@ -42,6 +42,8 @@ public:
 	bool vertical; //when true use vert controls
 	bool horizontal; //use horizontal
 	bool both; //use mixture
+	bool upKeyPrevious;
+	bool downKeyPrevious;
 	static sf::Clock m_timeBetweenClicks;
 
 protected:

@@ -6,8 +6,9 @@ Button::Button(std::string s = "", float x = 0, float y = 0) : Widget()
 
 	m_id = "button";
 
-	if (!m_font.loadFromFile("..\Fonts\impact.ttf"))
+	if (!m_font.loadFromFile("Fonts/impact.ttf"))
 	{
+		std::cout << "Button font failed to load" << std::endl;
 	}
 
 	m_hasFocus = false; //no focus

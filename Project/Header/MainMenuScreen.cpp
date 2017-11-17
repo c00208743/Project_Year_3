@@ -11,18 +11,32 @@
 //constructs the splash screen
 MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 {
-	m_currentSelect = 0;
-
 	// Load from a font file on disk
 	if (!myFont.loadFromFile("Fonts/powerful.ttf"))
 	{
-		// Error...
+		std::cout << "First main menu font failed to load" << std::endl;
 	}
 
 	if (!myFont2.loadFromFile("Fonts/Batman.ttf"))
 	{
-		// Error...
+		std::cout << "Second main menu font failed to load" << std::endl;
 	}
+
+	m_currentSelect = 0;
+
+	m_title = new Label("MAIN MENU", 200.0f, 200.0f, "powerful.ttf");
+	m_gui.addLabel(m_title);
+
+	m_play = new Button("Play", 200.0f, 500.0f);
+	m_play->gainFocus();
+	m_play->Enter = std::bind(&MainMenuScreen::goToLevelSelect, this);
+	m_gui.addButton(m_play);
+
+	m_quit = new Button("Quit", 200.0f, 600.0f);
+	m_quit->Enter = std::bind(&MainMenuScreen::quit, this);
+	m_gui.addButton(m_quit);
+
+
 
 	//if (!shaderTxt.loadFromFile("Images/Background.jpg"))
 	//{
@@ -41,14 +55,7 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 	//shader.setParameter("mouse", 0, 0);
 	//shader.setParameter("resolution", 1000, 800);
 
-	text[0] = sf::Text("MAIN MENU", myFont, 40);
-	//text.setColor(sf::Color(128, 128, 0));
-	text[0].setPosition(200, 200);
 
-	text[1] = sf::Text("[PLAY_GAME]", myFont2, 30);
-	text[1].setPosition(200, 500);
-	text[2] = sf::Text("(EXIT)", myFont2, 30);
-	text[2].setPosition(200, 600);
 }
 
 //destructor
@@ -59,15 +66,17 @@ MainMenuScreen::~MainMenuScreen()
 //updates screen
 void MainMenuScreen::update(sf::Time deltaTime)
 {
-	std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::A) << std::endl;
+	//std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::A) << std::endl;
 
 	/*updateShader = m_cumulativeTime.asSeconds();
 	shader.setParameter("time", updateShader);*/
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_game->changeGameState(GameState::WorldSelect);
+		//m_game->changeGameState(GameState::WorldSelect);
 	}
+
+	m_gui.update(m_currentSelect, 2);
 
 }
 
@@ -78,7 +87,8 @@ void MainMenuScreen::render(sf::RenderWindow & window)
 	{
 		window.draw(text[i]);
 	}
-	/*window.draw(shaderSprite, &shader);*/
+
+	m_gui.draw(window);
 }
 
 
@@ -87,4 +97,14 @@ void MainMenuScreen::render(sf::RenderWindow & window)
 void MainMenuScreen::setStateBack()
 {
 	//m_game->changeGameState(GameState::TheMenu);
+}
+
+void MainMenuScreen::quit()
+{
+	m_game->m_window.close();
+}
+
+void MainMenuScreen::goToLevelSelect()
+{
+	m_game->changeGameState(GameState::WorldSelect);
 }
