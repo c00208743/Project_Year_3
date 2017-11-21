@@ -24,18 +24,27 @@ WorldSelectScreen::WorldSelectScreen(Game & game) : m_game(&game)
 		// Error...
 	}
 
+	
+	m_title = new Label("WORLD SELECT ", 100.0f, 100.0f, "powerful.ttf");
+	m_gui.addLabel(m_title);
 
-	text[0] = sf::Text("WORLD SELECT ", myFont, 40);
-	text[0].setPosition(100, 100);
+	m_worldOne = new Button("(World) (One)", 700.0f, 400.0f, "Batman.ttf");
+	m_worldOne->gainFocus();
+	m_worldOne->Enter = std::bind(&WorldSelectScreen::goToGameScreen, this);
+	m_gui.addButton(m_worldOne);
 
-	text[1] = sf::Text("(world One)", myFont2, 40);
-	text[1].setFillColor(sf::Color::Blue);
-	text[1].setPosition(700, 400);
-	text[2] = sf::Text("[world Two]", myFont2, 40);
-	text[2].setPosition(700, 500);
-	text[3] = sf::Text("(world Three)", myFont2, 40);
-	text[3].setPosition(700, 600);
+	m_worldTwo = new Button("(World) (Two)", 700.0f, 500.0f, "Batman.ttf");
+	m_worldTwo->Enter = std::bind(&WorldSelectScreen::goToGameScreen, this);
+	m_gui.addButton(m_worldTwo);
 
+	m_worldThree = new Button("(World) (Three)", 700.0f, 600.0f, "Batman.ttf");
+	m_worldThree->Enter = std::bind(&WorldSelectScreen::goToGameScreen, this);
+	m_gui.addButton(m_worldThree);
+
+
+	m_back = new Button("(Back)", 700.0f, 700.0f, "Batman.ttf");
+	m_back->Enter = std::bind(&WorldSelectScreen::goToMainMenu, this);
+	m_gui.addButton(m_back);
 
 	keys = KeyHandler();
 }
@@ -48,7 +57,7 @@ WorldSelectScreen::~WorldSelectScreen()
 //updates screen
 void WorldSelectScreen::update(sf::Time deltaTime)
 {
-	
+	m_gui.update(m_currentSelect, 4);
 }
 
 //draws window
@@ -59,6 +68,7 @@ void WorldSelectScreen::render(sf::RenderWindow & window)
 		window.draw(text[i]);
 	}
 
+	m_gui.draw(window);
 }
 
 
@@ -67,4 +77,15 @@ void WorldSelectScreen::render(sf::RenderWindow & window)
 void WorldSelectScreen::setStateBack()
 {
 	//m_game->changeGameState(GameState::TheMenu);
+}
+
+
+void WorldSelectScreen::goToGameScreen()
+{
+	m_game->changeGameState(GameState::Gameplay);
+}
+
+void WorldSelectScreen::goToMainMenu()
+{
+	m_game->changeGameState(GameState::MainMenu);
 }

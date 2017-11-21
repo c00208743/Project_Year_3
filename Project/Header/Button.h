@@ -16,6 +16,7 @@ class Button : public Widget
 {
 public:
 	Button(std::string s, float x, float y);
+	Button(std::string s, float x, float y, std::string font);
 	Button(std::string s, float x, float y, int size);
 	Button(std::string s, float x, float y, sf::Color color, std::string tag);
 	~Button();

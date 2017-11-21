@@ -245,11 +245,11 @@ void GUI::decreaseSliderValue(int &index)
 void GUI::verticalControls(int &index, int numOfItems)
 {
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !upKeyPrevious)
 	{
 		moveUp(index);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !downKeyPrevious)
 	{
 		moveDown(index, numOfItems);
 	}
@@ -295,16 +295,16 @@ void GUI::horizontalControls(int & index, int numOfItems)
 //vertical and horizontal control scheme for xbox controller, dpad vertical and horizontal
 void GUI::vertAndHorControls(int & index, int numOfItems)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !upKeyPrevious)
 	{
 		moveUp(index);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !upKeyPrevious)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !downKeyPrevious)
 	{
 		moveDown(index, numOfItems);
 	}
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !downKeyPrevious)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 	{
 		activate(index);
 	}
