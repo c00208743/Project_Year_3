@@ -98,27 +98,22 @@ void Game::update(sf::Time time)
 	{
 	case GameState::Splash:
 		m_Splash->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::Title:
 		m_Title->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::MainMenu:
 		m_mainMenu->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::WorldSelect:
 		m_worldSelect->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::EndGame:
 		m_endGame->update(time);
-		m_window.setView(m_view2);
 		break;
 
 	case GameState::Gameplay:

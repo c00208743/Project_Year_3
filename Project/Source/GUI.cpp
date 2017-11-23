@@ -13,6 +13,7 @@ GUI::GUI()
 {
 	upKeyPrevious = false;
 	downKeyPrevious = false;
+	activatePause = true;
 }
 
 GUI::~GUI()
@@ -58,6 +59,7 @@ void GUI::update(int &index, int numOfItems)
 	else {
 		vertAndHorControls(index, numOfItems);
 	}
+
 }
 
 void GUI::draw(sf::RenderWindow & window)
@@ -253,7 +255,7 @@ void GUI::verticalControls(int &index, int numOfItems)
 	{
 		moveDown(index, numOfItems);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !activatePause)
 	{
 		if (m_elements[index]->getID() == "button") {
 
@@ -273,6 +275,7 @@ void GUI::verticalControls(int &index, int numOfItems)
 
 	upKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
 	downKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+	activatePause = sf::Keyboard::isKeyPressed(sf::Keyboard::Return);
 }
 
 //horizontal control scheme for xbox controller, dpad horizontal use only
@@ -286,10 +289,13 @@ void GUI::horizontalControls(int & index, int numOfItems)
 	{
 		moveDown(index, numOfItems);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !activatePause)
 	{
 		activate(index);
 	}
+
+
+	activatePause = sf::Keyboard::isKeyPressed(sf::Keyboard::Return);
 }
 
 //vertical and horizontal control scheme for xbox controller, dpad vertical and horizontal
@@ -304,13 +310,14 @@ void GUI::vertAndHorControls(int & index, int numOfItems)
 		moveDown(index, numOfItems);
 	}
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !activatePause)
 	{
 		activate(index);
 	}
 
 	upKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
 	downKeyPrevious = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+	activatePause = sf::Keyboard::isKeyPressed(sf::Keyboard::Return);
 }
 
 //clear out all the elements 

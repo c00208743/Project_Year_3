@@ -44,6 +44,7 @@ public:
 	bool both; //use mixture
 	bool upKeyPrevious;
 	bool downKeyPrevious;
+	bool activatePause;							// Prevents activate begin called straight away.
 	static sf::Clock m_timeBetweenClicks;
 
 protected:
