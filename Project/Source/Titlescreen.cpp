@@ -33,6 +33,7 @@ Titlescreen::Titlescreen(Game & game) : m_game(&game)
 	text[1].setFillColor(sf::Color::Black);
 
 	keys = KeyHandler();
+	m_cumulativeTime = sf::Time::Zero;
 }
 
 //destructor

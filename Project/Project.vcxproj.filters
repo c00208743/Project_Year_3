@@ -54,9 +54,6 @@
     <ClInclude Include="Header\MainMenuScreen.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Platform.h">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Player.h">
       <Filter>Header</Filter>
     </ClInclude>
@@ -70,6 +67,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Header\LevelLoader.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Platform.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

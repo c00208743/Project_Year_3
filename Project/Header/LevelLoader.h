@@ -9,16 +9,16 @@
 #include <iostream>
 #include "..\yaml-cpp\yaml.h"
 
-struct NodeData
+struct PlatformData
 {
 	std::string m_type;
 	sf::Vector2f m_position;
-	double m_rotation;
+	sf::Vector2f m_size;
 };
 
 struct LevelData
 {
-	std::vector<NodeData> m_node;
+	std::vector<PlatformData> m_platform;
 };
 
 

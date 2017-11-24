@@ -2,40 +2,23 @@
 #include <time.h>
 
 
-void operator >> (const YAML::Node & trackNode, NodeData& track)
+void operator >> (const YAML::Node & platformNode, PlatformData& platform)
 {
-	track.m_type = trackNode["type"].as<std::string>();
-	track.m_position.x = trackNode["position"]["x"].as<float>();
-	track.m_position.y = trackNode["position"]["y"].as<float>();
-	track.m_rotation = trackNode["rotation"].as<double>();
+	platform.m_type = platformNode["type"].as<std::string>();
+	platform.m_position.x = platformNode["position"]["x"].as<float>();
+	platform.m_position.y = platformNode["position"]["y"].as<float>();
+	platform.m_size.x = platformNode["size"]["w"].as<float>();
+	platform.m_size.y = platformNode["size"]["h"].as<float>();
 }
 
-void operator >> (const YAML::Node& levelNode, LevelData &level)
+void operator >> (const YAML::Node& nodeData, LevelData &level)
 {
-	const YAML::Node& trackNode = levelNode["Nodes"].as<YAML::Node>();//loads nodes from yaml file
-	for (unsigned i = 0; i < trackNode.size(); ++i)
+	const YAML::Node& platformNode = nodeData["platforms"].as<YAML::Node>();//loads nodes from yaml file
+	for (unsigned i = 0; i < platformNode.size(); ++i)
 	{
-		NodeData track;
-		trackNode[i] >> track;
-		level.m_node.push_back(track);
-
-	}
-
-	const YAML::Node& trackNode1 = levelNode["Nodes1"].as<YAML::Node>();//Loads Nodes1 from yaml file
-	for (unsigned i = 0; i < trackNode1.size(); ++i)
-	{
-		NodeData track;
-		trackNode1[i] >> track;
-		level.m_node.push_back(track);
-
-	}
-
-	const YAML::Node& trackNode2 = levelNode["Nodes2"].as<YAML::Node>();//load Nodes2 from file
-	for (unsigned i = 0; i < trackNode2.size(); ++i)
-	{
-		NodeData track;
-		trackNode2[i] >> track;
-		level.m_node.push_back(track);
+		PlatformData platform;
+		platformNode[i] >> platform;
+		level.m_platform.push_back(platform);
 
 	}
 }
@@ -49,7 +32,7 @@ LevelLoader::LevelLoader()
 bool LevelLoader::load(int nr, LevelData &level)
 {
 	std::stringstream ss;
-	ss << "./Levels/level";//load form this file
+	ss << "./Level/level";//load form this file
 	ss << nr;
 	ss << ".yaml";
 

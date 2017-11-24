@@ -51,6 +51,7 @@ public:
 	void run();
 	
 	void changeGameState(GameState gameState); //function to change the screen
+	void GeneratePlatform();
 
 	sf::RenderWindow m_window;
 
@@ -59,15 +60,16 @@ private:
 	void render();
 	void processInput();
 
-	GameState m_currentGameState = GameState::Splash; //current gamestate/screen
+	GameState m_currentGameState = GameState::Gameplay; //current gamestate/screen
 	std::unique_ptr<SplashScreen>m_Splash;
 	std::unique_ptr<Titlescreen>m_Title;
 	std::unique_ptr<MainMenuScreen>m_mainMenu;
 	std::unique_ptr<Platform>m_ground;
-	std::vector<std::unique_ptr<Platform>>m_platform;
+	std::vector<Platform>m_platform;
 	std::unique_ptr<Player>m_player;
 	std::unique_ptr<WorldSelectScreen>m_worldSelect;
 	std::unique_ptr<EndGameScreen>m_endGame;
+	LevelData m_level;
 
 	//time 
 	sf::Clock clock;

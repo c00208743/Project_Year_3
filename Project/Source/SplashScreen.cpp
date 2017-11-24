@@ -29,6 +29,8 @@ SplashScreen::SplashScreen(Game & game) : m_game(&game)
 
 	text2 = sf::Text("(presents)", myFont2, 100);
 	text2.setPosition(1000, 600);
+
+	m_cumulativeTime = sf::Time::Zero;
 }
 
 //destructor
