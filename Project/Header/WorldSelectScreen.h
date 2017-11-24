@@ -10,6 +10,7 @@
 #include "../Header/Game.h"
 #include "../Header/KeyHandler.h"
 #include <SFML\Graphics.hpp>
+#include "GUI.h"
 
 class Game;
 
@@ -19,11 +20,20 @@ public:
 	WorldSelectScreen(Game &game);
 	~WorldSelectScreen();
 	void update(sf::Time deltaTime);
+	void goToGameScreen();
+	void goToMainMenu();
 	void render(sf::RenderWindow & window);
 
 private:
 
 	Game *m_game;
+
+	GUI m_gui;
+	Label *m_title;
+	Button *m_worldOne;
+	Button *m_worldTwo;
+	Button *m_worldThree;
+	Button *m_back;
 
 	int m_currentSelect = 0;
 	bool conToMenu;

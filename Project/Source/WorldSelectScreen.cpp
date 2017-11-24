@@ -32,20 +32,33 @@ WorldSelectScreen::WorldSelectScreen(Game & game) : m_game(&game)
 	m_Sprite.setPosition(0, 0);
 	m_Sprite.setScale(1.2, 1.2);
 
+	
+	m_title = new Label("WORLD SELECT ", 800.0f, 400.0f, "powerful.ttf");
+	m_title->changeTextSize(100);
+	m_gui.addLabel(m_title);
 
-	text[0] = sf::Text("WORLD SELECT ", myFont, 100);
-	text[0].setPosition(800, 400);
+	m_worldOne = new Button("(World) (One)", 1000.0f, 600.0f, "Batman.ttf");
+	m_worldOne->changeTextSize(100);
+	m_worldOne->gainFocus();
+	m_worldOne->Enter = std::bind(&WorldSelectScreen::goToGameScreen, this);
+	m_gui.addButton(m_worldOne);
 
-	text[1] = sf::Text("(world One)", myFont2, 100);
-	text[1].setFillColor(sf::Color::Red);
-	text[1].setPosition(1000, 600);
-	text[2] = sf::Text("[world Two]", myFont2, 100);
-	text[2].setFillColor(sf::Color::Black);
-	text[2].setPosition(1000, 800);
-	text[3] = sf::Text("(world Three)", myFont2, 100);
-	text[3].setFillColor(sf::Color::Black);
-	text[3].setPosition(1000, 1000);
+	m_worldTwo = new Button("(World) (Two)", 1000.0f, 800.0f, "Batman.ttf");
+	m_worldTwo->changeTextSize(100);
+	m_worldTwo->Enter = std::bind(&WorldSelectScreen::goToGameScreen, this);
+	m_gui.addButton(m_worldTwo);
 
+
+	m_worldThree = new Button("(World) (Three)", 1000.0f, 1000.0f, "Batman.ttf");
+	m_worldThree->changeTextSize(100);
+	m_worldThree->Enter = std::bind(&WorldSelectScreen::goToGameScreen, this);
+	m_gui.addButton(m_worldThree);
+
+
+	m_back = new Button("(Back)", 1000.0f, 1200.0f, "Batman.ttf");
+	m_back->changeTextSize(100);
+	m_back->Enter = std::bind(&WorldSelectScreen::goToMainMenu, this);
+	m_gui.addButton(m_back);
 
 	keys = KeyHandler();
 }
@@ -58,10 +71,7 @@ WorldSelectScreen::~WorldSelectScreen()
 //updates screen
 void WorldSelectScreen::update(sf::Time deltaTime)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
-	{
-		m_game->changeGameState(GameState::Gameplay);
-	}
+	m_gui.update(m_currentSelect, 4);
 }
 
 //draws window
@@ -73,4 +83,16 @@ void WorldSelectScreen::render(sf::RenderWindow & window)
 		window.draw(text[i]);
 	}
 
+	m_gui.draw(window);
+}
+
+
+void WorldSelectScreen::goToGameScreen()
+{
+	m_game->changeGameState(GameState::Gameplay);
+}
+
+void WorldSelectScreen::goToMainMenu()
+{
+	m_game->changeGameState(GameState::MainMenu);
 }
