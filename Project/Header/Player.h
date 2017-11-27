@@ -34,6 +34,7 @@ private:
 	sf::Vector2f m_gravity;
 	sf::Vector2f m_jumpForce;
 	sf::Vector2f m_moveForce;
+	sf::Vector2f m_friction;
 	sf::RectangleShape m_rect;
 	sf::Time m_cumulativeTime;
 

@@ -1,28 +1,28 @@
 platforms:
    - type: platform
-     position: {x: 400,y: 1200}
+     position: {x: 400,y: 1250}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 700, y: 1100}
+     position: {x: 700, y: 1200}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 1300, y: 1100}
+     position: {x: 1300, y: 1150}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 1100, y: 900}
+     position: {x: 1100, y: 1025}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 300, y: 100}
+     position: {x: 300, y: 400}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 300, y: 300}
+     position: {x: 300, y: 525}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 400, y: 500}
+     position: {x: 400, y: 650}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 600, y: 700}
+     position: {x: 600, y: 900}
      size: {w: 300, h: 50}
    - type: platform
-     position: {x: 800, y: 500}
+     position: {x: 800, y: 775}
      size: {w: 300, h: 50}

@@ -14,6 +14,7 @@ Player::Player()
 	m_gravity = sf::Vector2f(0, 0.1f * m_mass);
 	m_jumpForce = sf::Vector2f(0, -5.0f * m_mass);
 	m_moveForce = sf::Vector2f(0.5f * m_mass, 0.0f);
+	m_friction = sf::Vector2f(0.3f * m_mass, 0.0f);
 	m_fall = true;
 	m_jumping = false;
 	m_movingLeft = true;
@@ -60,6 +61,24 @@ void Player::update()
 	moveLeft();
 	moveRight();
 
+	if (!m_fall && !m_jumping)
+	{
+		if (m_velocity.x < 0)
+		{
+			applyForce(m_friction);
+		}
+		else if (m_velocity.x > 0)
+		{
+			applyForce(-m_friction);
+		}
+
+		if (m_velocity.x < 0.15f && m_velocity.x > -0.15f)
+		{
+			m_velocity.x = 0;
+		}
+
+	}
+
 	if (m_fall)
 	{
 		applyForce(m_gravity);
@@ -98,7 +117,7 @@ void Player::checkCollision(sf::Vector2f size, sf::Vector2f pos)
 			{
 				// Top 
 				m_velocity.y = 0.0f;
-				m_jumping = false;
+				m_jumping = true;
 				m_fall = true;
 				m_pos.y = pos.y + size.y;
 			}
