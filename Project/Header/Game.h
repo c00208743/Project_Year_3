@@ -14,6 +14,7 @@
 #include "WorldSelectScreen.h"
 #include "EndGameScreen.h"
 #include "LevelLoader.h"
+#include "Gameplay.h"
 #include <SFML/Graphics/Shader.hpp>
 #include <SFML/Audio.hpp>
 
@@ -24,6 +25,7 @@ class Titlescreen;
 class MainMenuScreen;
 class Platform;
 class Player;
+class GameplayScreen;
 class WorldSelectScreen;
 class EndGameScreen;
 
@@ -51,7 +53,6 @@ public:
 	void run();
 	
 	void changeGameState(GameState gameState); //function to change the screen
-	void GeneratePlatform();
 
 	sf::RenderWindow m_window;
 
@@ -64,12 +65,10 @@ private:
 	std::unique_ptr<SplashScreen>m_Splash;
 	std::unique_ptr<Titlescreen>m_Title;
 	std::unique_ptr<MainMenuScreen>m_mainMenu;
-	std::unique_ptr<Platform>m_ground;
-	std::vector<Platform>m_platform;
-	std::unique_ptr<Player>m_player;
+	std::unique_ptr<GameplayScreen>m_Gameplay;
 	std::unique_ptr<WorldSelectScreen>m_worldSelect;
 	std::unique_ptr<EndGameScreen>m_endGame;
-	LevelData m_level;
+	
 
 	//time 
 	sf::Clock clock;

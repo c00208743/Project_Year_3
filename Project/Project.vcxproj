@@ -24,6 +24,7 @@
     <ClInclude Include="Header\CheckBox.h" />
     <ClInclude Include="Header\EndGameScreen.h" />
     <ClInclude Include="Header\Game.h" />
+    <ClInclude Include="Header\Gameplay.h" />
     <ClInclude Include="Header\GUI.h" />
     <ClInclude Include="Header\KeyHandler.h" />
     <ClInclude Include="Header\Label.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="Source\CheckBox.cpp" />
     <ClCompile Include="Source\EndGameScreen.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Gameplay.cpp" />
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\KeyHandler.cpp" />
     <ClCompile Include="Source\Label.cpp" />

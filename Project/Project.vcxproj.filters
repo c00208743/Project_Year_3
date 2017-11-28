@@ -63,6 +63,9 @@
     <ClInclude Include="Header\WorldSelectScreen.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Gameplay.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Header\MainMenuScreen.cpp">
@@ -120,6 +123,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\WorldSelectScreen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gameplay.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

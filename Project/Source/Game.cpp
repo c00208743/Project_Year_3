@@ -4,19 +4,10 @@
 Game::Game() :
 	m_window(sf::VideoMode(2560, 1440), "Sean and Jamie's Game")
 {
-	//loading yaml file
-	int currentLevel = 1;
-	if (!LevelLoader::load(currentLevel, m_level))
-	{
-		return;
-	}
-
 	m_Splash = make_unique<SplashScreen>(*this);
 	m_Title = make_unique<Titlescreen>(*this);
 	m_mainMenu = make_unique<MainMenuScreen>(*this);
-	m_ground = make_unique<Platform>(0.0f, 1350.0f, 400.0f, 90.0f);
-	m_player = make_unique<Player>();
-	GeneratePlatform();
+	m_Gameplay = make_unique<GameplayScreen>(*this);
 	m_worldSelect = make_unique<WorldSelectScreen>(*this);
 	m_endGame = make_unique<EndGameScreen>(*this);
 
@@ -42,21 +33,6 @@ void Game::init()
 	timePerFrame = sf::seconds(1.0f / 60.0f);
 }
 
-void Game::GeneratePlatform()
-{
-
-	//for (PlatformData const &node : m_level.m_platform)//load in node data from yaml file
-	for (int i = 0; i < m_level.m_platform.size(); i++)
-	{
-		float x = m_level.m_platform[i].m_position.x;
-		float y = m_level.m_platform[i].m_position.y;
-		float w = m_level.m_platform[i].m_size.x;
-		float h = m_level.m_platform[i].m_size.y;
-		Platform temp = Platform(x, y, w, h);
-		m_platform.push_back(temp);
-	}
-
-}
 
 void Game::run()
 {
@@ -97,12 +73,7 @@ void Game::render()
 		break;
 
 	case GameState::Gameplay:
-		m_ground->render(m_window);
-		for (int i = 0; i < m_platform.size(); i++)
-		{
-			m_platform[i].render(m_window);
-		}
-		m_player->render(m_window);
+		m_Gameplay->render(m_window);
 		break;
 
 	case GameState::WorldSelect:
@@ -148,14 +119,7 @@ void Game::update(sf::Time time)
 		break;
 
 	case GameState::Gameplay:
-		m_ground->update();
-		m_player->checkCollision(m_ground->getSize(), m_ground->getPos());
-		for (int i = 0; i < m_platform.size(); i++)
-		{
-			m_platform[i].update();
-			m_player->checkCollision(m_platform[i].getSize(), m_platform[i].getPos());
-		}
-		m_player->update();
+		m_Gameplay->update(time);
 		break;
 
 	default:
