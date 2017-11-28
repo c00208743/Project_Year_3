@@ -78,5 +78,6 @@ private:
 
 	//Audio
 	sf::Music music;
+
 };
 

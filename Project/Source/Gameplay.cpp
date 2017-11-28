@@ -29,14 +29,16 @@ GameplayScreen::GameplayScreen(Game & game) : m_game(&game)
 		// Error...
 	}
 
-	text = sf::Text("TEST", myFont, 100);
-	text.setPosition(475, 400);
+	
 
 	m_cumulativeTime = sf::Time::Zero;
 	
 	GeneratePlatform();
 	m_ground = make_unique<Platform>(0.0f, 1350.0f, 400.0f, 90.0f);
 	m_player = make_unique<Player>();
+
+	view.setCenter(1280, 720); // set player's position to camera
+	view.setSize(sf::Vector2f(2560, 1440)); // set camera's size
 	
 }
 
@@ -57,6 +59,9 @@ void GameplayScreen::update(sf::Time deltaTime)
 		m_platform[i].update();
 		m_player->checkCollision(m_platform[i].getSize(), m_platform[i].getPos());
 	}
+	
+	 
+	view.setCenter(posV++, view.getCenter().y);
 
 	m_player->update();
 
@@ -64,8 +69,6 @@ void GameplayScreen::update(sf::Time deltaTime)
 
 void GameplayScreen::GeneratePlatform()
 {
-
-	//for (PlatformData const &node : m_level.m_platform)//load in node data from yaml file
 	for (int i = 0; i < m_level.m_platform.size(); i++)
 	{
 		float x = m_level.m_platform[i].m_position.x;
@@ -87,7 +90,6 @@ void GameplayScreen::render(sf::RenderWindow & window)
 		m_platform[i].render(window);
 	}
 	m_player->render(window);
+	window.setView(view);
 
-
-	window.draw(text);
 }

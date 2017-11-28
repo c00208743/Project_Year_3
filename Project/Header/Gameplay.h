@@ -34,6 +34,7 @@ private:
 	Game *m_game;
 
 	int m_currentSelect = 0;
+	int posV = 1280;
 	sf::Time m_cumulativeTime;
 	sf::Font myFont;
 	sf::Font myFont2;
@@ -41,4 +42,6 @@ private:
 	sf::Text text2;
 
 
+	//Camera
+	sf::View view; // camera
 };
