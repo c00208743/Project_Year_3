@@ -10,6 +10,8 @@
 #include "Game.h"
 #include <SFML\Graphics.hpp>
 
+class Platform;
+class Player;
 class Game;
 
 class GameplayScreen
