@@ -40,8 +40,11 @@ private:
 	sf::Font myFont2;
 	sf::Text text;
 	sf::Text text2;
-
-
+	//shader
+	float updateShader;
+	sf::Shader shader;
+	sf::Texture shaderTxt;
+	sf::Sprite shaderSprite;
 	//Camera
 	sf::View view; // camera
 };

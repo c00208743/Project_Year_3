@@ -29,6 +29,24 @@ GameplayScreen::GameplayScreen(Game & game) : m_game(&game)
 		// Error...
 	}
 
+	if (!shaderTxt.loadFromFile("Images/Background.jpg"))
+	{
+		std::string s("error loading shader texture");
+		//throw std::exception(s.c_str);
+	}
+	shaderSprite.setTexture(shaderTxt);
+	shaderSprite.setPosition(0, 0);
+
+	if (!shader.loadFromFile("Shader/shader.frag", sf::Shader::Fragment))
+	{
+		std::string s("error loading shader");
+		//throw std::exception(s.c_str);
+	}
+	shader.setUniform("time", 0.0f);
+	shader.setUniform("mouse", sf::Vector2f(0.5f, 0.8f));
+	shader.setUniform("resolution", sf::Vector2f(2560, 1440));
+
+
 	
 
 	m_cumulativeTime = sf::Time::Zero;
@@ -51,6 +69,10 @@ GameplayScreen::~GameplayScreen()
 void GameplayScreen::update(sf::Time deltaTime)
 {
 	m_cumulativeTime += deltaTime;
+
+	updateShader += deltaTime.asSeconds() * 2;
+	shader.setUniform("time", updateShader);
+
 	
 	m_ground->update();
 	m_player->checkCollision(m_ground->getSize(), m_ground->getPos());
@@ -84,6 +106,8 @@ void GameplayScreen::GeneratePlatform()
 //draws window
 void GameplayScreen::render(sf::RenderWindow & window)
 {
+	window.draw(shaderSprite, &shader);
+
 	m_ground->render(window);
 	for (int i = 0; i < m_platform.size(); i++)
 	{

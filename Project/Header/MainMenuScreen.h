@@ -36,11 +36,9 @@ private:
 	sf::Font myFont;
 	sf::Font myFont2;
 	sf::Text text[3];
-	//shader
-	float updateShader;
-	sf::Shader shader;
-	sf::Texture shaderTxt;
-	sf::Sprite shaderSprite;
+	//Background image
+	sf::Texture m_Texture;//background texture
+	sf::Sprite m_Sprite;//sprite for texture
 
 
 

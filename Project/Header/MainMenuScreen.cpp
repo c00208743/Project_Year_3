@@ -22,24 +22,15 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 	{
 		std::cout << "Second main menu font failed to load" << std::endl;
 	}
-
-	if (!shaderTxt.loadFromFile("Images/Background.jpg"))
+	if (!m_Texture.loadFromFile("Images/Background-Menu.png"))
 	{
-		std::string s("error loading shader texture");
-		//throw std::exception(s.c_str);
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
 	}
-	shaderSprite.setTexture(shaderTxt);
-	shaderSprite.setPosition(0, 0);
-
-	if (!shader.loadFromFile("Shader/shader.frag", sf::Shader::Fragment))
-	{
-		std::string s("error loading shader");
-		//throw std::exception(s.c_str);
-	}
-	shader.setUniform("time", 0.0f);
-	shader.setUniform("mouse", sf::Vector2f(0.5f, 0.8f));
-	shader.setUniform("resolution", sf::Vector2f(2560, 1440));
-	//shader.setUniform("backbuffer", sf::Shader::CurrentTexture);
+	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setPosition(0, 0);
+	m_Sprite.setScale(1.2, 1.2);
+	
 
 	m_currentSelect = 0;
 
@@ -59,24 +50,6 @@ MainMenuScreen::MainMenuScreen(Game & game) : m_game(&game)
 	m_gui.addButton(m_quit);
 
 
-
-	//if (!shaderTxt.loadFromFile("Images/Background.jpg"))
-	//{
-	//	std::string s("error loading shader texture");
-	//	//throw std::exception(s.c_str);
-	//}
-	//shaderSprite.setTexture(shaderTxt);
-	//shaderSprite.setPosition(0, 0);
-
-	//if (!shader.loadFromFile("Shader/upgrade.frag", sf::Shader::Fragment))
-	//{
-	//	std::string s("error loading shader");
-	//	//throw std::exception(s.c_str);
-	//}
-	//shader.setParameter("time", 0);
-	//shader.setParameter("mouse", 0, 0);
-	//shader.setParameter("resolution", 1000, 800);
-
 }
 
 //destructor
@@ -89,8 +62,7 @@ void MainMenuScreen::update(sf::Time deltaTime)
 {
 	//std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::A) << std::endl;
 
-	updateShader += deltaTime.asSeconds()*2;
-	shader.setUniform("time", updateShader);
+
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -105,7 +77,7 @@ void MainMenuScreen::update(sf::Time deltaTime)
 //draws window
 void MainMenuScreen::render(sf::RenderWindow & window)
 {
-	window.draw(shaderSprite, &shader);
+	window.draw(m_Sprite);
 	m_gui.draw(window);
 }
 
