@@ -28,23 +28,14 @@ GameplayScreen::GameplayScreen(Game & game) : m_game(&game)
 	{
 		// Error...
 	}
-
-	if (!shaderTxt.loadFromFile("Images/Background.jpg"))
+	if (!m_Texture.loadFromFile("Images/Gameplay.png"))
 	{
-		std::string s("error loading shader texture");
-		//throw std::exception(s.c_str);
+		std::string s("error loading texture from file");
+		throw std::exception(s.c_str());
 	}
-	shaderSprite.setTexture(shaderTxt);
-	shaderSprite.setPosition(0, 0);
-
-	if (!shader.loadFromFile("Shader/shader.frag", sf::Shader::Fragment))
-	{
-		std::string s("error loading shader");
-		//throw std::exception(s.c_str);
-	}
-	shader.setUniform("time", 0.0f);
-	shader.setUniform("mouse", sf::Vector2f(0.5f, 0.8f));
-	shader.setUniform("resolution", sf::Vector2f(2560, 1440));
+	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setPosition(0, 0);
+	m_Sprite.setScale(1.3, 1.3);
 
 
 	
@@ -69,9 +60,6 @@ GameplayScreen::~GameplayScreen()
 void GameplayScreen::update(sf::Time deltaTime)
 {
 	m_cumulativeTime += deltaTime;
-
-	updateShader += deltaTime.asSeconds() * 2;
-	shader.setUniform("time", updateShader);
 
 	
 	m_ground->update();
@@ -106,7 +94,7 @@ void GameplayScreen::GeneratePlatform()
 //draws window
 void GameplayScreen::render(sf::RenderWindow & window)
 {
-	window.draw(shaderSprite, &shader);
+	window.draw(m_Sprite);
 
 	m_ground->render(window);
 	for (int i = 0; i < m_platform.size(); i++)

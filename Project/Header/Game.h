@@ -61,7 +61,7 @@ private:
 	void render();
 	void processInput();
 
-	GameState m_currentGameState = GameState::Splash; //current gamestate/screen
+	GameState m_currentGameState = GameState::Gameplay; //current gamestate/screen
 	std::unique_ptr<SplashScreen>m_Splash;
 	std::unique_ptr<Titlescreen>m_Title;
 	std::unique_ptr<MainMenuScreen>m_mainMenu;
