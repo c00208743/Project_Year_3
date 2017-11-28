@@ -79,5 +79,6 @@ private:
 
 	//Audio
 	sf::Music music;
+	sf::View m_view;
 };
 

@@ -20,6 +20,8 @@ Game::Game() :
 	m_worldSelect = make_unique<WorldSelectScreen>(*this);
 	m_endGame = make_unique<EndGameScreen>(*this);
 
+	m_view = sf::View(sf::Vector2f(7500, 720), sf::Vector2f(2560, 1440));
+
 	/*if (!music.openFromFile("../Audio/song1.wav"))
 	{
 		std::string s("error loading wav file");
@@ -156,6 +158,7 @@ void Game::update(sf::Time time)
 			m_player->checkCollision(m_platform[i].getSize(), m_platform[i].getPos());
 		}
 		m_player->update();
+		m_window.setView(m_view);
 		break;
 
 	default:
