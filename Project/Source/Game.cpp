@@ -20,7 +20,7 @@ Game::Game() :
 	m_worldSelect = make_unique<WorldSelectScreen>(*this);
 	m_endGame = make_unique<EndGameScreen>(*this);
 
-	m_view = sf::View(sf::Vector2f(7500, 720), sf::Vector2f(2560, 1440));
+	m_view = sf::View(sf::Vector2f(0, 720), sf::Vector2f(2560, 1440));
 
 	/*if (!music.openFromFile("../Audio/song1.wav"))
 	{
